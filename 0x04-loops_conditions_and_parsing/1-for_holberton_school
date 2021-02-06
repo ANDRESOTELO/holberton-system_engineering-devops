@@ -3,5 +3,5 @@
 string="Holberton School"
 for _ in {0..9}
 	do
-		echo $string
+		echo "$string"
 	done
