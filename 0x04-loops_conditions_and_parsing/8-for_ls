@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script display the content of the current directory
+for x in *
+	do
+		# -d delimit where strings split and -f2 delimits only strring after '-'
+		echo "$x" | cut -d '-' -f2
+	done
