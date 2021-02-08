@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script stop 4-to_infinity_and_beyond process
+id_proccess=$(ps aux | grep infinity | awk '{print$2}' | head -1)
+kill -TERM "$id_proccess"
