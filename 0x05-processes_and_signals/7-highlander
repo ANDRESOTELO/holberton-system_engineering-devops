@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script displays "To infinity and beyond" indefinitely
+count=1
+trap 'echo "I am invincible!!!"' TERM
+while [ $count -ge 0 ]
+	do
+		echo "To infinity and beyond"
+		sleep 2
+	done
