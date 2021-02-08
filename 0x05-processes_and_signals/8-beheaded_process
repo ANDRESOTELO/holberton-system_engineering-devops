@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# This script stop 4-to_infinity_and_beyond process
-id_proccess=$(ps aux | grep highlander | awk '{print$2}' | head -1)
+# This script stop 7-highlander process
+id_proccess=$(pgrep -f ./7-highlander)
 kill -KILL "$id_proccess"
