@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Process and PID file script
+# Create a PID file
+PIDFILE=/var/run/holbertonscript.pid
+echo $$ > $PIDFILE
+COUNT=1
+# Handle TERM signal deleting file and exit
+trap 'echo I hate the kill command; rm -rf $PIDFILE; exit' TERM
+trap 'echo "Y U no love me?!"' INT
+while [ $COUNT -ge 0 ]
+	do
+		echo "To infinity and beyond"
+		sleep 2
+	done
