@@ -9,11 +9,7 @@ Another common term used to describe the automation features implemented by conf
 There are a number of configuration management tools available in the market. Puppet, Ansible, Chef and Salt are popular choices. Although each tool will have its own characteristics and work in slightly different ways, they are all driven by the same purpose: to make sure the systems state matches the state described by your provisioning scripts.
 
 ## Benefits of Configuration Management for Servers
-Quick Provisioning of New Servers
-Quick Recovery from Critical Events
-No More Snowflake Servers
-Version Control for the Server Environment
-Replicated Environments
+Quick Provisioning of New Servers, Quick Recovery from Critical Events, No More Snowflake Servers, Version Control for the Server Environment, Replicated Environments
 
 ## Author
 Andrés Sotelo - Holberton School Colombia
