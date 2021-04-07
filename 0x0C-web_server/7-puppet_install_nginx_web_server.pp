@@ -1,7 +1,8 @@
 # Install Nginx web server (w/ Puppet)
 
 package { 'nginx':
-  ensure   => present,
+  ensure   => installed,
+  name     => 'nginx',
   provider => 'apt'
 }
 
@@ -12,12 +13,13 @@ file { '/var/www/html/index.nginx-debian.html':
 
 file_line { 'Redirect_me':
   ensure => present,
-  after  => 'listen 80 default_server;',
   path   => '/etc/nginx/sites-available/default',
+  after  => 'listen 80 default_server;',
   line   => '	rewrite ^/redirect_me https://youtu.be/LNv9PevSRLo permanent;'
 }
 
-service { 'service_start':
+service { 'nginx':
   ensure  => running,
+  enable  => true,
   require => Package['nginx']
 }
