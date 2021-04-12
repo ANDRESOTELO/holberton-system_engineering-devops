@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Install and config HAproxy
+
+# Update sources lists
+sudo apt update
+
+# Install HAProxy
+sudo apt install -y haproxy
+
+# Load balancer on layer 4 config section
+CONFIG_SETTINGS="\
+frontend http_front
+   bind *:80
+   stats uri /haproxy?stats
+   default_backend http_back
+
+backend http_back
+   balance roundrobin
+   server 2411-web-01 35.196.21.242:80 check
+   server 2411-web-02 35.231.11.206:80 check
+"
+
+# Write config section on haproxy.cfg
+echo "$CONFIG_SETTINGS" >> /etc/haproxy/haproxy.cfg
