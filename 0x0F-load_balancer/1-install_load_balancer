@@ -22,3 +22,6 @@ backend http_back
 
 # Write config section on haproxy.cfg
 echo "$CONFIG_SETTINGS" >> /etc/haproxy/haproxy.cfg
+
+# Restart HAproxy service
+sudo service haproxy restart
