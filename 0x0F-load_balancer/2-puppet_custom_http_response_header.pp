@@ -1,5 +1,11 @@
 # Install Nginx web server
 
+exec { 'update server':
+  command  => 'apt-get update',
+  user	   => 'root',
+  provider => 'shell',
+}
+->
 package { 'nginx':
   ensure   => installed,
   name     => 'nginx',
