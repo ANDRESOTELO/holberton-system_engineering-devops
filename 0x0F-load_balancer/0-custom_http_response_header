@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Install nginx web server
+
+sudo apt update -y
+sudo apt install nginx -y
+
+# Save a string in the index.html
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+
+# Rewrite a redirection in the default file on nginx
+sed -i "/server_name _;/ a\\\trewrite ^/redirect_me https://youtu.be/LNv9PevSRLo permanent;" /etc/nginx/sites-available/default
+
+# Save a string in the error page 404
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/error404.html
+
+# Add a error_page 404 in default file on nginx
+sed -i "/server_name _;/ a\\\terror_page 404 \/error404.html;\n\tlocation = \/error404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}" /etc/nginx/sites-available/default
+
+# Add a custom header on server to show who serve de files 
+sed -i "/location \/ {/ a\\\t\tadd_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+
+# Restart to save all config changes
+sudo service nginx restart
