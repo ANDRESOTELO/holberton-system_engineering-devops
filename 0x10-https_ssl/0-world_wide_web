@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Bash script that will display information about subdomains
+
+subdomains=('www' 'lb-01' 'web-01' 'web-02')
+ 
+if [ $# -eq 1 ]
+then
+    subdomains=('www' 'lb-01' 'web-01' 'web-02')
+    for val in "${subdomains[@]}";
+    do
+	to_query="$val.$1"
+	info=$(dig $to_query | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print $0}')
+	echo "The subdomain $val is a $(echo $info | awk '{print $4}') record and points to $(echo $info | awk '{print $5}')"
+    done
+else
+    to_query="$2.$1"
+    info=$(dig $to_query | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print $\
+0}')
+    echo "The subdomain $2 is a $(echo $info | awk '{print $4}') record a\
+nd points to $(echo $info | awk '{print $5}')"
+fi
