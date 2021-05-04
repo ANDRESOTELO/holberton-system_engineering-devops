@@ -14,28 +14,31 @@ def export_json_data():
     """
     # r is a Response object from users
     r = requests.get('https://jsonplaceholder.typicode.com/users')
-    # t is a Response object from TODO
-    t = requests.get('https://jsonplaceholder.typicode.com/todos?userId=')
 
     # To convert a Response object to an iterable python object (dict or list)
-    users = r.json()
-    tasks = t.json()
+    obj = r.json()
+    json_dictio = {}
 
-    for user in users:
+    for user in obj:
+
         user_id = user['id']
-        user_name = obj['username']
+        user_name = user.get('username')
+
+        t = requests.get('https://jsonplaceholder.typicode.com/todos?userId={}'
+                         .format(user_id))
+        obj_2 = t.json()
 
         dictio_in_list = {}
         list_of_dictio = []
 
-    for i in range(len(tasks)):
-        status_task = tasks[i]['completed']
-        title = tasks[i]['title']
-        dictio_in_list = {'task': title,
-                          'completed': status_task,
-                          'username': user_name}
-        list_of_dictio.append(dictio_in_list)
-    json_dictio[user_id] = list_of_dictio
+        for i in range(len(obj_2)):
+            status_task = obj_2[i]['completed']
+            title = obj_2[i]['title']
+            dictio_in_list = {'task': title,
+                              'completed': status_task,
+                              'username': user_name}
+            list_of_dictio.append(dictio_in_list)
+        json_dictio[user_id] = list_of_dictio
 
     with open('todo_all_employees.json', 'w') as json_file:
         json.dump(json_dictio, json_file)
