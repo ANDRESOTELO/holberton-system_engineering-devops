@@ -25,7 +25,7 @@ def gather_data():
     obj_2 = t.json()
 
     # To get user_name
-    user_name = obj['name']
+    user_name = obj['username']
 
     with open('{}.csv'.format(user_id_param), 'w', newline='') as csv_file:
         writer = csv.writer(
