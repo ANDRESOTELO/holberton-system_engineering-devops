@@ -23,5 +23,5 @@ def top_ten(subreddit):
                     children_data = child.get('data')
                     print(children_data.get('title'))
         print(None)
-    except:
+    except(BaseException):
         print(None)
