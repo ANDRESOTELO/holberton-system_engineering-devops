@@ -5,7 +5,7 @@ exec { 'fix-ulimit':
   path    => ['/usr/local/bin/', '/bin/', '/usr/bin/env'],
 }
 
-exec { 'restart-service':
+-> exec { 'restart-service':
   command => 'sudo service nginx restart',
   path    => ['/usr/local/bin/', '/bin/', '/usr/bin/env'],
 }
