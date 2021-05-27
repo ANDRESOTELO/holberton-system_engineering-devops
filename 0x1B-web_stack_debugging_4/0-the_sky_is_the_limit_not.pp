@@ -1,14 +1,11 @@
 # Fix code Puppet
 
 exec { 'fix-ulimit':
-  user     => 'root',
-  provider => 'shell',
-  command  => 'sudo sed -i s/15/4096/g /etc/default/nginx',
-  path     => '/usr/local/bin/:/bin/'
+  command => 'sudo sed -i s/15/4096/g /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/:/usr/bin/env'
 }
-
--> exec { 'restart-service':
-  user    => 'root',
+->
+exec { 'restart-service':
   command => 'sudo service nginx restart',
-  path    => '/usr/local/bin/:/bin/'
+  path    => '/usr/local/bin/:/bin/:/usr/bin/env'
 }
